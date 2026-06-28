@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=69.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dktools"
+version = "0.1.0"
+description = "Engineering Toolkit for DK Projects"
+authors = [
+    { name = "Fabio Alves Lima" }
+]
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+    "PyYAML>=6.0"
+]
+
+[project.scripts]
+dktools = "dktools.__main__:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
