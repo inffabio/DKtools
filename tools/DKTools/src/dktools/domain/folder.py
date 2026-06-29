@@ -2,15 +2,16 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from dktools.domain.file import File
+from dktools.domain.item import Item
 
 
 @dataclass(slots=True)
-class Folder:
+class Folder(Item):
+    """
+    Represents a directory.
+    """
 
-    name: str
+    children: list[Item] = field(default_factory=list)
 
-    items: list["Folder | File"] = field(default_factory=list)
-
-    def add(self, item: "Folder | File") -> None:
-        self.items.append(item)
+    def add(self, item: Item) -> None:
+        self.children.append(item)

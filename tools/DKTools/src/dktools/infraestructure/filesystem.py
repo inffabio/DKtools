@@ -1,38 +1,94 @@
-    @staticmethod
-    def create_text_file(
-        file: Path,
-        content: str
-    ) -> bool:
+"""
+Filesystem abstraction.
 
-        if file.exists():
+All filesystem operations must go through this class.
+"""
+
+from __future__ import annotations
+
+from pathlib import Path
+from typing import Iterable
+
+
+class FileSystem:
+    """Utility class for filesystem operations."""
+
+    @staticmethod
+    def ensure_directory(path: Path) -> bool:
+
+        if path.exists():
             return False
 
-        file.parent.mkdir(
+        path.mkdir(
             parents=True,
-            exist_ok=True
+            exist_ok=True,
         )
 
-        file.write_text(
+        return True
+
+    @staticmethod
+    def ensure_file(
+        path: Path,
+        content: str = "",
+        encoding: str = "utf-8",
+    ) -> bool:
+
+        if path.exists():
+            return False
+
+        path.parent.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+
+        path.write_text(
             content,
-            encoding="utf-8"
+            encoding=encoding,
         )
 
         return True
-
 
     @staticmethod
-    def create_empty_file(
-        file: Path
-    ) -> bool:
+    def exists(path: Path) -> bool:
+        return path.exists()
 
-        if file.exists():
-            return False
+    @staticmethod
+    def read(path: Path) -> str:
+        return path.read_text(encoding="utf-8")
 
-        file.parent.mkdir(
+    @staticmethod
+    def write(
+        path: Path,
+        content: str,
+        encoding: str = "utf-8",
+    ) -> None:
+
+        path.parent.mkdir(
             parents=True,
-            exist_ok=True
+            exist_ok=True,
         )
 
-        file.touch()
+        path.write_text(
+            content,
+            encoding=encoding,
+        )
 
-        return True
+    @staticmethod
+    def directories(path: Path) -> Iterable[Path]:
+        return sorted(
+            [
+                item
+                for item in path.iterdir()
+                if item.is_dir()
+            ]
+        )
+
+    @staticmethod
+    def files(path: Path) -> Iterable[Path]:
+        return sorted(
+            [
+                item
+                for item in path.iterdir()
+                if item.is_file()
+            ]
+        )

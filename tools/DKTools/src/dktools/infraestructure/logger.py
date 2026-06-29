@@ -1,30 +1,16 @@
-"""
-Simple console logger.
-"""
-
-from __future__ import annotations
-
-from datetime import datetime
-
-
 class Logger:
 
     @staticmethod
-    def _timestamp() -> str:
-        return datetime.now().strftime("%H:%M:%S")
+    def created(text: str):
 
-    @classmethod
-    def info(cls, message: str) -> None:
-        print(f"[{cls._timestamp()}] [INFO] {message}")
+        print(f"[CREATE] {text}")
 
-    @classmethod
-    def success(cls, message: str) -> None:
-        print(f"[{cls._timestamp()}] [ OK ] {message}")
+    @staticmethod
+    def skipped(text: str):
 
-    @classmethod
-    def warning(cls, message: str) -> None:
-        print(f"[{cls._timestamp()}] [WARN] {message}")
+        print(f"[SKIP]   {text}")
 
-    @classmethod
-    def error(cls, message: str) -> None:
-        print(f"[{cls._timestamp()}] [FAIL] {message}")
+    @staticmethod
+    def error(text: str):
+
+        print(f"[ERROR]  {text}")

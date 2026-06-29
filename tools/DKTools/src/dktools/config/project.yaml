@@ -1,7 +1,17 @@
 project:
+
   name: DK-01
 
 tree:
+
+  - type: file
+    name: README.md
+
+  - type: file
+    name: CHANGELOG.md
+
+  - type: file
+    name: LICENSE.md
 
   - type: folder
     name: docs
@@ -11,14 +21,8 @@ tree:
       - type: folder
         name: 00_Project
 
-      - type: folder
-        name: 01_Requirements
-
-      - type: folder
-        name: 02_System
-
-      - type: folder
-        name: 03_Electronics
+      - type: file
+        name: README.md
 
   - type: folder
     name: hardware
@@ -27,10 +31,7 @@ tree:
     name: firmware
 
   - type: folder
-    name: mechanical
-
-  - type: folder
     name: production
 
   - type: folder
-    name: resources
+    name: tests

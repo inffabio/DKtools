@@ -2,24 +2,14 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from pathlib import Path
-
-from dktools.domain.item import Item
+from dktools.models.item import Item
 
 
 @dataclass(slots=True)
-class Project:
-    """
-    Represents a project.
-    """
-
-    name: str
-
-    version: str = "0.1.0"
-
-    root: Path | None = None
+class Folder(Item):
 
     items: list[Item] = field(default_factory=list)
 
     def add(self, item: Item) -> None:
+
         self.items.append(item)

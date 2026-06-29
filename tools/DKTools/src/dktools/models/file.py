@@ -1,13 +1,12 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
 
-from dktools.domain.item import Item
+from dktools.models.item import Item
 
 
 @dataclass(slots=True)
 class File(Item):
-    """
-    Represents a file inside a project.
-    """
 
     template: str | None = None
 

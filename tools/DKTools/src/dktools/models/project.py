@@ -4,14 +4,11 @@ from dataclasses import dataclass, field
 
 from pathlib import Path
 
-from dktools.domain.item import Item
+from dktools.models.item import Item
 
 
 @dataclass(slots=True)
 class Project:
-    """
-    Represents a project.
-    """
 
     name: str
 
@@ -22,4 +19,5 @@ class Project:
     items: list[Item] = field(default_factory=list)
 
     def add(self, item: Item) -> None:
+
         self.items.append(item)
